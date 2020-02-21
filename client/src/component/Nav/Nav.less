@@ -1,0 +1,35 @@
+@import '../../style/index.less';
+
+.nav-main {
+  flex-shrink: 0;
+  width: 20%;
+  font-size: @fontSize;
+  background: @clr-seal;
+  ul {
+    .bbox;
+    padding: 24px;
+    .wh100;
+    li {
+      .w100;
+      a {
+        .dbl;
+        margin: 0 -24px;
+        padding: 12px 24px;
+        color: @clr-dove;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        &.active, &:hover {
+          .textShadow;
+          color: #fff;
+          background: @clr-primary;
+        }
+      }
+    }
+  }
+}
+
+@media print {
+  .nav-main {
+    .dnone;
+  }
+}

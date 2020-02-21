@@ -1,7 +1,7 @@
 {
   "name": "conftable-server",
   "version": "0.0.1",
-  "description": "Manage your conference talk proposals and speakers better.",
+  "description": "Manage your conference talk proposals and speakers more comfortably.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
