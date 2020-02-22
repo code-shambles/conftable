@@ -3,7 +3,7 @@ import React from 'react';
 import './Button.less';
 
 const Button = props => {
-  let className = 'btn';
+  let className = 'btn btn-warning';
 
   if (props.ghost) {
     className += ' btn-ghost';
@@ -16,7 +16,11 @@ const Button = props => {
   };
 
   return (
-    <button className={className} onClick={props.onClick}>{props.children}</button>
+    <button className={className} onClick={props.onClick}>
+      <div className="btn-content">
+        {props.children}
+      </div>
+    </button>
   )
 };
 

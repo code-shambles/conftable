@@ -19,7 +19,7 @@ const renderItems = props => {
 
 const Nav = props => {
   return(
-    <nav className="nav-main">
+    <nav className="sidebar">
       <ul>
         <Router>
           {renderItems(props)}

@@ -1,50 +1,92 @@
-@import '../../style/index.less';
+@import (reference) '../../style/index.less';
 
 .btn {
-  @paddingY: 0.8rem;
-  
-  .bbox;
+  @paddingX: 1.75rem;
+  .bg-hidden() {
+    .pseudo;
+    top: 50%;
+    right: 50%;
+    bottom: 50%;
+    left: 50%;
+    border-radius: 50%;
+  }
+
+  .button;
   .m0;
-  padding: @paddingY 1.5rem;
   color: #fff;
-  font-size: @fontSize;
-  .textShadow;
-  cursor: pointer;
+  padding-left: @paddingX;
+  padding-right: @paddingX;
   background: @clr-primary;
-  border-radius: 0.2rem;
-  border: 1px solid transparent;
-  &.btn-inline {
-    margin: -@paddingY 0;
+  transition: inherit, color 0.4s ease;
+  .btn-content {
+    .prel;
+    z-index: 1;
+  }
+  &:before, &:after {
+    .bg-hidden;
+  }
+  &:before {
+    background-color: rgba(255,255,255,0.15);
+    transition: all 0.4s ease;
+  }
+  &:after {
+    background-color: @clr-primary;
+    transition: all 0.3s 0.2s ease;
+  }
+  &:hover, &:focus {
+    &:before, &:after {
+      border-radius: 0;
+    }
+    &:before {
+      .spanSize;
+    }
+    &:after {
+      top: 0.25em;
+      right: 0.25em;
+      bottom: 0.25em;
+      left: 0.25em;
+    }
+  }
+  &:active {
+    &:before, &:after {
+      .bg-hidden;
+    }
   }
   &.btn-ghost {
     color: @clr-primary;
     text-shadow: none;
-    background: transparent;
-    border-color: @clr-primary;
+    background-color: transparent;
+    border: 1px solid $color;
+    &:before {
+      background-color: fade(@clr-primary, 90%);
+    }
+    &:after {
+      background-color: @clr-primary;
+    }
+    &:hover {
+      color: #fff;
+    }
   }
   &.btn-success {
-    background: @clr-frog;
-    &.btn-ghost {
-      color: @clr-frog;
-      background: transparent;
-      border-color: @clr-frog;
-    }
+    .btn-color(@clr-success);
   }
   &.btn-warning {
-    background: @clr-canary;
-    &.btn-ghost {
-      color: @clr-canary;
-      background: transparent;
-      border-color: @clr-canary;
-    }
+    .btn-color(@clr-warning);
   }
   &.btn-danger {
-    background: @clr-ladybug;
-    &.btn-ghost {
-      color: @clr-ladybug;
-      background: transparent;
-      border-color: @clr-ladybug;
-    }
+    .btn-color(@clr-danger);
+  }
+}
+
+.btn-color(@clr-name) {
+  background-color: @clr-name;
+  &:after {
+    background-color: @clr-name;
+  }
+  &.btn-ghost {
+    color: @clr-name;
+    background-color: transparent;
+    border-color: $color;
   }
 }
 

@@ -45,7 +45,7 @@ const MenuLink = props => {
 
 const renderItems = () => {
   const items = [
-    <li key="conferences"><MenuLink to="/conferences">Conferences</MenuLink></li>,
+    <li key="conferences"><MenuLink to="/conferences">Conferences <i class="lni-chevron-down"></i></MenuLink></li>,
     <li key="speakers"><MenuLink to="/speakers">Speakers</MenuLink></li>
   ];
 

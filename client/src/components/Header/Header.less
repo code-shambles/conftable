@@ -1,4 +1,4 @@
-@import '../../style/index.less';
+@import (reference) '../../style/index.less';
 
 #site-header {
   .pfix;
@@ -11,7 +11,6 @@
   color: @clr-headerText;
   font-size: @fontSize;
   background: @clr-headerBg;
-  .border(bottom);
   nav {
     padding: 0 24px;
     ul {
@@ -20,6 +19,7 @@
         a {
           .dbl;
           padding: 0 24px;
+          color: @clr-primary;
         }
       }
     }

@@ -1,11 +1,11 @@
-@import '../../style/index.less';
+@import (reference) '../../style/index.less';
 
-.nav-main {
+.sidebar {
   flex-shrink: 0;
   margin-top: @headerHeight;
   width: @sidebarWidth;
   font-size: @fontSize;
-  background: @clr-whale;
+  background-color: @clr-peacock;
   ul {
     .bbox;
     padding: 24px;
@@ -17,12 +17,15 @@
         margin: 0 -24px;
         padding: 12px 24px;
         color: @clr-dove;
-        text-decoration: none;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
         transition: all 0.2s ease;
         &.active, &:hover {
           .textShadow;
           color: #fff;
-          background: @clr-primary;
+          background-color: @clr-primary;
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
       }
     }
@@ -30,7 +33,7 @@
 }
 
 @media print {
-  .nav-main {
+  .sidebar {
     .dnone;
   }
 }
