@@ -1,0 +1,35 @@
+@import '../../style/index.less';
+
+#site-header {
+  .pfix;
+  .dflex;
+  align-items: center;
+  .bbox;
+  .w100;
+  padding-right: 24px;
+  height: @headerHeight;
+  color: @clr-headerText;
+  font-size: @fontSize;
+  background: @clr-headerBg;
+  .border(bottom);
+  nav {
+    padding: 0 24px;
+    ul {
+      li {
+        .dinlbl;
+        a {
+          .dbl;
+          padding: 0 24px;
+        }
+      }
+    }
+  }
+}
+
+#site-header-logo {
+  width: @sidebarWidth;
+  height: 30px;
+  path, polygon {
+    fill: @clr-primary;
+  }
+}

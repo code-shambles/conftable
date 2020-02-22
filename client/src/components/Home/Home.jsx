@@ -36,7 +36,7 @@ const Home = props => {
 
   return [(
     <section key="welcome" className="welcome">
-      <h1>Comftable!</h1>
+      <h1>Conftable!</h1>
       <h3>Comfortable administration for your conference talk proposals and speakers.</h3>
     </section>
   ), (

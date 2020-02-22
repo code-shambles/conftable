@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Site from './component/Site';
+import App from './components/App';
 
 const rootElement = document.getElementById('app');
 
-render(<Site />, rootElement);
+render(<App />, rootElement);

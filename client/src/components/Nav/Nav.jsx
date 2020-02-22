@@ -10,6 +10,7 @@ const MenuLink = props => {
 const renderItems = props => {
   const items = [
     <li key="/"><MenuLink to="/">Home</MenuLink></li>,
+    <li key="submissions"><MenuLink to="/submissions">Submissions</MenuLink></li>,
     <li key="talkcards"><MenuLink to="/talkcards">Print talk cards</MenuLink></li>
   ];
 
