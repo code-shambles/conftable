@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, SidebarConference } from '../../';
 
-import './TalkCardsPage.less';
+import './ConfTalkCardsPage.less';
 
 const renderCards = submissions => {
   let cards = [];
@@ -22,11 +22,11 @@ const renderCards = submissions => {
   return cards;
 };
 
-const TalkCardsPage = props => {
+const ConfTalkCardsPage = props => {
   return [
     <SidebarConference key="sidebar" />,
     (
-      <main key="main" className="talk-cards-page">
+      <main key="talkcards" id="talk-cards">
         <section>
           <h1>Print Talk Cards</h1>
           <ul>{renderCards(props.submissions)}</ul>
@@ -38,4 +38,4 @@ const TalkCardsPage = props => {
   ];
 };
 
-export default TalkCardsPage;
+export default ConfTalkCardsPage;

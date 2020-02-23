@@ -1,21 +1,19 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
 
-import { ConferencesPage, HomePage, TalkCardsPage } from '../../';
+import { ConferencesPage, ConfPage, HomePage } from '../../';
 
 import './Main.less';
 
 const Main = props => {
   return (
     <Switch>
-      <Route  exact={true} path="/">
+      <Route exact path="/">
         <HomePage onSubmissionsChange={props.onSubmissionsChange} />
       </Route>
-      <Route  exact={true} path="/conferences">
-        <ConferencesPage submissions={props.submissions.submissions} />
-      </Route>
-      <Route  exact={true} path="/talkcards">
-        <TalkCardsPage submissions={props.submissions.submissions} />
+      <Route path="/conferences">
+        <Route exact path="/conferences" component={ConferencesPage} />
+        <Route path="/conferences/:confId" component={ConfPage} />
       </Route>
     </Switch>
   );

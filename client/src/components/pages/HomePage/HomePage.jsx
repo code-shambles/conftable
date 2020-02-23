@@ -35,7 +35,7 @@ const HomePage = props => {
   }  
 
   return (
-    <main className="home-page">
+    <main id="home">
       <section key="welcome" className="welcome">
         <h1>Conftable!</h1>
         <h3>Comfortable administration for your conference talk proposals and speakers.</h3>

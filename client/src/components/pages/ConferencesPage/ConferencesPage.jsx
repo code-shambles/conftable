@@ -18,7 +18,7 @@ const ConferencesPage = props => {
 
     return (
       <li key={confId} className={props.confs.selectedId === confId ? 'active' : null}>
-        <Link to={`conferences/${confId}`}>
+        <Link to={`/conferences/${confId}`}>
           {conf.name}
         </Link>
         <Button ghost={true} disabled={props.confs.selectedId === confId} onClick={ () => handleSelectConf(confId) }>Select</Button>

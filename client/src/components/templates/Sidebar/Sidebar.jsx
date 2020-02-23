@@ -7,7 +7,7 @@ const renderItems = navItems => {
   const items = [];
 
   navItems.forEach(navItem => {
-    items.push(<li key={navItem.path}><NavLink to={navItem.path}>{navItem.text}</NavLink></li>);
+    items.push(<li key={navItem.path}><NavLink to={navItem.path} exact={navItem.exact} className={navItem.className}>{navItem.text}</NavLink></li>);
   });
 
   return items;
@@ -16,10 +16,10 @@ const renderItems = navItems => {
 const Sidebar = ({ navItems, children }) => {
   return(
     <nav className="sidebar">
+      {children}
       <ul>
         {renderItems(navItems)}
       </ul>
-      {children}
     </nav>
   )
 };

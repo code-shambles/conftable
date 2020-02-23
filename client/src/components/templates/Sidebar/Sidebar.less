@@ -6,6 +6,9 @@
   width: @sidebarWidth;
   font-size: @fontSize;
   background-color: @clr-peacock;
+  a {
+    color: @clr-sidebar-link;
+  }
   ul {
     .bbox;
     padding: 24px;
@@ -16,13 +19,12 @@
         .dbl;
         margin: 0 -24px;
         padding: 12px 24px;
-        color: @clr-dove;
         border-top: 1px solid transparent;
         border-bottom: 1px solid transparent;
         transition: all 0.2s ease;
         &.active, &:hover {
           .textShadow;
-          color: #fff;
+          color: @clr-sidebar-link-active;
           background-color: @clr-primary;
           border-top: 1px solid rgba(255, 255, 255, 0.05);
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
