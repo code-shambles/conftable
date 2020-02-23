@@ -1,0 +1,2 @@
+export const LOAD_CONFS_SUCCESS = 'LOAD_CONFS_SUCCESS';
+export const SELECT_CONF = 'SELECT_CONF';

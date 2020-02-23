@@ -1,0 +1,30 @@
+@import (reference) '../../../style/index.less';
+
+.talk-cards-page {
+  ul {
+    .dflex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    li {
+      width: 30%;
+      h2 {
+        .m0;
+      }
+    }
+  }
+}
+
+@media print {
+  .talk-cards {
+    h1 {
+      display: none;
+    }
+    ul {
+      width: 100%;
+      height: 100%;
+      li {
+        height: 20%;
+      }
+    }
+  }
+}

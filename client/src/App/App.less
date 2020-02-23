@@ -1,0 +1,27 @@
+@import (reference) '../style/index.less';
+
+#app {
+  .dflex;
+  .wh100;
+  overflow: auto;
+}
+
+main {
+  flex-grow: 1;
+  .bbox;
+  margin-top: @headerHeight;
+  padding: 24px;
+  color: @clr-seal;
+  font-size: @fontSize;
+  background: @clr-dove;
+  .border(top);
+}
+
+
+@media print {
+  main {
+    .p0;
+    color: #000;
+    background: #fff;
+  }
+}
