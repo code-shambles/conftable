@@ -10,7 +10,6 @@ const renderCards = submissions => {
   if (submissions) {
     let i = 0;
     submissions.filter(sub => sub.state === 'accepted').forEach(sub => {
-      console.log(sub);
       cards.push(
         <li key={i++}>
           <h2>{sub.title}</h2>

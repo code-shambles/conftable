@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as confActions from '../../../actions/confActions';
+import * as confActions from '../../../redux/actions';
 import { HashRouter as Router, NavLink } from "react-router-dom";
 
 import './Header.less';
@@ -47,7 +47,7 @@ const MenuLink = props => {
 
 const renderItems = confs => {
   const items = [
-    <li key="conferences"><MenuLink to="/conferences">Conferences ({confs.length})</MenuLink></li>,
+    <li key="conferences"><MenuLink to="/conferences">Conferences ({confs.ids.length})</MenuLink></li>,
     <li key="speakers"><MenuLink to="/speakers">Speakers</MenuLink></li>
   ];
 
@@ -71,7 +71,6 @@ const Header = props => {
 
 
 function mapStateToProps(state, ownProps) {
-  console.log('state', state)
   return {
     confs: state.confs
   };

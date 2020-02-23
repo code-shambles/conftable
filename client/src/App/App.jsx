@@ -1,41 +1,36 @@
-import React, { useState } from 'react';
-import configureStore from '../store/configureStore';
-import { Provider } from 'react-redux';
+import React from 'react';
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
+//import store from '../redux/store';
 
-import { loadConfs } from '../actions/confActions';
 
-import LS from '../tool/Ls';
+//import LS from '../tool/Ls';
 
 import { Header, Main } from '../components';
 
 import './App.less';
 
-const store = configureStore();
-store.dispatch(loadConfs());
+//const store = configureStore();
 
-const LS_KEY = 'cft-submissions';
+// const LS_KEY = 'cft-submissions';
 
-const initSubmissionsFromLs = () => {
-  return LS.getJson(LS_KEY);
-};
+// const initSubmissionsFromLs = () => {
+//   return LS.getJson(LS_KEY);
+// };
 
 const App = () => {
 
-  const [submissions, setSubmissions] = useState(initSubmissionsFromLs());
+  // const [submissions, setSubmissions] = useState(initSubmissionsFromLs());
 
-  const handleSubmissionsChange = json => {
-    LS.set(LS_KEY, json);
-    setSubmissions(json.submissions);
-  };
+  // const handleSubmissionsChange = json => {
+  //   LS.set(LS_KEY, json);
+  //   setSubmissions(json.submissions);
+  // };
 
   return (
-    <Provider store={store}>
-      <Router>
-        <Header />
-        <Main onSubmissionsChange={handleSubmissionsChange} submissions={submissions} />
-      </Router>
-    </Provider>
+    <Router>
+      <Header />
+      <Main submissions={[]} />
+    </Router>
   );
 }
 

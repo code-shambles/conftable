@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../actions/confActions';
+import * as actions from '../../../redux/actions';
 import { Link } from "react-router-dom";
 
 import { Button } from '../../';
@@ -9,19 +9,19 @@ import './ConferencesPage.less';
 
 const ConferencesPage = props => {
 
-  console.log('props', props);
-
   function handleSelectConf(confId) {
     props.onSelectConf(confId);
   };
 
-  const list = [];
-  //{conf.name} <Link to={`conferences/${conf.id}`}><Button ghost={true} onClick={ () => props.onSelectConf(conf.id) }>Select</Button></Link>
+  const list = props.confs.ids.map(confId => {
+    const conf = props.confs.allById[confId];
 
-  props.confs.list.forEach(conf => {
-    list.push(
-      <li key={conf.id} className={props.selectedConfId === conf.id ? 'active' : null}>
-        {conf.name} <Button ghost={true} disabled={props.selectedConfId === conf.id} onClick={ () => handleSelectConf(conf.id) }>Select</Button>
+    return (
+      <li key={confId} className={props.confs.selectedId === confId ? 'active' : null}>
+        <Link to={`conferences/${confId}`}>
+          {conf.name}
+        </Link>
+        <Button ghost={true} disabled={props.confs.selectedId === confId} onClick={ () => handleSelectConf(confId) }>Select</Button>
       </li>
     )
   });
@@ -40,18 +40,15 @@ const ConferencesPage = props => {
 };
 
 function mapStateToProps(state, ownProps) {
-  console.log('state', state)
   return {
-    confs: state.confs,
-    selectedConfId: state.selectedConfId
+    confs: state.confs
   };
 } 
 
 const mapDispatchToProps = dispatch => {
 
-  console.log('actions.selectConf', actions.selectConf);
   return {
-    onSelectConf: selectedConfId => dispatch(actions.selectConf(selectedConfId)),
+    onSelectConf: selectedId => dispatch(actions.selectConf(selectedId)),
   };
 }
    

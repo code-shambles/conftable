@@ -12,11 +12,15 @@ export function loadConfs() {
 };
 
 export function loadConfsSuccess(confs) {
-  console.log('success', confs)
-  return { type: types.LOAD_CONFS_SUCCESS, confs: { list: confs } };
+  return { 
+    type: types.LOAD_CONFS_SUCCESS, 
+    payload: confs
+  };
 };
 
-export function selectConf(selectedConfId) {
-  console.log('> selectConf', arguments);
-  return { type: types.SELECT_CONF, selectedConfId: selectedConfId };
+export function selectConf(selectedId) {
+  return { 
+    type: types.SELECT_CONF, 
+    payload: selectedId 
+  };
 };
