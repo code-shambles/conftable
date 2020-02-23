@@ -1,9 +1,9 @@
 import * as types from './actionTypes';
-import confApi from '../api/confApi';
+import { getAllConfs } from '../api/confApi';
 
-const loadConfs = () => {
+export function loadConfs() {
   return function(dispatch) {
-    return confsApi.getAllConfs().then(confs => {
+    return getAllConfs().then(confs => {
       dispatch(loadConfsSuccess(confs));
     }).catch(error => {
       throw(error);
@@ -11,8 +11,12 @@ const loadConfs = () => {
   };
 };
 
-const loadConfsSuccess = confs => {
-  return {type: actionTypes.LOAD_CONFS_SUCCESS, confs};
+export function loadConfsSuccess(confs) {
+  console.log('success', confs)
+  return { type: types.LOAD_CONFS_SUCCESS, confs: { list: confs } };
 };
 
-export { loadConfs, loadConfsSuccess };
+export function selectConf(selectedConfId) {
+  console.log('> selectConf', arguments);
+  return { type: types.SELECT_CONF, selectedConfId: selectedConfId };
+};

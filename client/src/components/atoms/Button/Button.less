@@ -1,4 +1,4 @@
-@import (reference) '../../style/index.less';
+@import (reference) '../../../style/index.less';
 
 .btn {
   @paddingX: 1.75rem;
@@ -11,7 +11,12 @@
     border-radius: 50%;
   }
 
-  .button;
+  .input;
+  .textShadow;
+  border: none;
+  transition: box-shadow @a7n-trans;
+  cursor: pointer;
+
   .m0;
   color: #fff;
   padding-left: @paddingX;
@@ -33,26 +38,36 @@
     background-color: @clr-primary;
     transition: all 0.3s 0.2s ease;
   }
-  &:hover, &:focus {
-    &:before, &:after {
-      border-radius: 0;
-    }
-    &:before {
-      .spanSize;
-    }
-    &:after {
-      top: 0.25em;
-      right: 0.25em;
-      bottom: 0.25em;
-      left: 0.25em;
-    }
+  &[disabled] {
+    cursor: not-allowed;
   }
-  &:active {
-    &:before, &:after {
-      .bg-hidden;
+  &:not([disabled]) {
+    &:hover, &:focus {
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      border: none;
+      &:before, &:after {
+        border-radius: 0;
+      }
+      &:before {
+        .spanSize;
+      }
+      &:after {
+        top: 0.25em;
+        right: 0.25em;
+        bottom: 0.25em;
+        left: 0.25em;
+      }
+    }
+    &:active {
+      border: none;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.3), inset 0 2px 5px rgba(0,0,0,0.3);
+      &:before, &:after {
+        .bg-hidden;
+      }
     }
   }
   &.btn-ghost {
+    padding: calc(@input-paddingY - 1px) calc(@paddingX - 1px);
     color: @clr-primary;
     text-shadow: none;
     background-color: transparent;
@@ -63,8 +78,15 @@
     &:after {
       background-color: @clr-primary;
     }
-    &:hover {
-      color: #fff;
+    &:not([disabled]) {
+      &:hover, &:focus {
+        color: #fff;
+        border: 1px solid @clr-primary;
+      }
+      &:active {
+        color: @clr-primary;
+        border: 1px solid $color;
+      }
     }
   }
   &.btn-success {
@@ -87,6 +109,14 @@
     color: @clr-name;
     background-color: transparent;
     border-color: $color;
+    &:not([disabled]) {
+      &:hover, &:focus {
+        border: 1px solid @clr-name;
+      }
+      &:active {
+        color: @clr-name;
+      }
+    }
   }
 }
 

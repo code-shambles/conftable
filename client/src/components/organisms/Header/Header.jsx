@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as confActions from '../../../actions/confActions';
 import { HashRouter as Router, NavLink } from "react-router-dom";
 
 import './Header.less';
@@ -43,23 +45,23 @@ const MenuLink = props => {
   return <NavLink {...props} exact={true} activeClassName="active"/>
 }
 
-const renderItems = () => {
+const renderItems = confs => {
   const items = [
-    <li key="conferences"><MenuLink to="/conferences">Conferences <i class="lni-chevron-down"></i></MenuLink></li>,
+    <li key="conferences"><MenuLink to="/conferences">Conferences ({confs.length})</MenuLink></li>,
     <li key="speakers"><MenuLink to="/speakers">Speakers</MenuLink></li>
   ];
 
   return items;
 }
 
-const Header = () => {
+const Header = props => {
   return (
     <header id="site-header">
       {logo}
       <nav id="header-nav">
         <ul>
           <Router>
-            {renderItems()}
+            {renderItems(props.confs)}
           </Router>
         </ul>
       </nav>
@@ -67,4 +69,12 @@ const Header = () => {
   );
 };
 
-export default Header;
+
+function mapStateToProps(state, ownProps) {
+  console.log('state', state)
+  return {
+    confs: state.confs
+  };
+} 
+   
+export default connect(mapStateToProps)(Header);

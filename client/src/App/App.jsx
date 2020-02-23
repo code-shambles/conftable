@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import configureStore from '../../store/configureStore';
+import configureStore from '../store/configureStore';
 import { Provider } from 'react-redux';
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import LS from '../../tool/Ls';
+import { loadConfs } from '../actions/confActions';
 
-import Header from '../Header';
-import Nav from '../Nav';
-import Home from '../Home';
-import TalkCards from '../TalkCards';
+import LS from '../tool/Ls';
+
+import { Header, Main } from '../components';
 
 import './App.less';
 
 const store = configureStore();
+store.dispatch(loadConfs());
 
 const LS_KEY = 'cft-submissions';
 
@@ -33,17 +33,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Header />
-        <Nav />
-        <main>
-          <Switch>
-            <Route  exact={true} path="/">
-              <Home onSubmissionsChange={handleSubmissionsChange} />
-            </Route>
-            <Route  exact={true} path="/talkcards">
-              <TalkCards submissions={submissions.submissions} />
-            </Route>
-          </Switch>
-        </main>
+        <Main onSubmissionsChange={handleSubmissionsChange} submissions={submissions} />
       </Router>
     </Provider>
   );

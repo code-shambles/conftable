@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import Button from '../Button';
+import { Button } from '../../';
 
-import './Home.less';
+import './HomePage.less';
 
 const renderErrorMsg = error => {
   
@@ -15,7 +15,7 @@ const renderErrorMsg = error => {
   }
 }
 
-const Home = props => {
+const HomePage = props => {
 
   const [error, setError] = useState(null);
   const [json, setJson] = useState(null);
@@ -34,19 +34,20 @@ const Home = props => {
     props.onSubmissionsChange = json.submissions;
   }  
 
-  return [(
-    <section key="welcome" className="welcome">
-      <h1>Conftable!</h1>
-      <h3>Comfortable administration for your conference talk proposals and speakers.</h3>
-    </section>
-  ), (
-    <section key="paste-json" className="paste-json">
-      <p>Paste the submissions JSON you downloaded here:</p>
-      <textarea onChange={handleJsonChange}></textarea><br />
-      {renderErrorMsg(error)}
-      <Button onClick={handleApplyClick}>Apply</Button>
-    </section>
-  )];
+  return (
+    <main className="home-page">
+      <section key="welcome" className="welcome">
+        <h1>Conftable!</h1>
+        <h3>Comfortable administration for your conference talk proposals and speakers.</h3>
+      </section>
+      <section key="paste-json" className="paste-json">
+        <p>Paste the submissions JSON you downloaded here:</p>
+        <textarea onChange={handleJsonChange}></textarea><br />
+        {renderErrorMsg(error)}
+        <Button onClick={handleApplyClick}>Apply</Button>
+      </section>
+    </main>
+  );
 };
 
-export default Home;
+export default HomePage;
