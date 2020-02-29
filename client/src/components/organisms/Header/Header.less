@@ -1,6 +1,14 @@
 @import (reference) '../../../style/index.less';
 
 #site-header {
+  @logo-origWidth: 339px;
+  @logo-origHeight: 88px;
+  @logo-height: 30px;
+  @logo-width: @logo-origWidth * @logo-height / @logo-origHeight;
+  @navItem-height: @logo-height;
+  @navItem-width: 140px;
+  @navItem-borderWidth: 5px;
+
   .pfix;
   .dflex;
   align-items: center;
@@ -10,25 +18,86 @@
   height: @headerHeight;
   color: @clr-headerText;
   font-size: @fontSize;
-  background: @clr-headerBg;
+  background-color: @clr-headerBg;
+  .border(bottom);
+
+  #header-logo {
+    div {
+      .dbl;
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin: 0 24px;
+      width: @logo-width;
+      height: @logo-height;
+      background: @clr-primary-grad;
+      clip-path: url("#header-logo-clip");
+    }
+  }
+
   nav {
     padding: 0 24px;
     ul {
+      display: flex;
+      align-items: center;
       li {
-        .dinlbl;
+        display: inline-flex;
+        align-items: center;
+        margin: 0 @navItem-borderWidth*2;
+        height: @headerHeight;
         a {
-          .dbl;
-          padding: 0 24px;
-          color: @clr-primary;
+          .dinlbl;
+          .prel;
+          .bbox;
+          padding: 0;
+          color: @clr-link;
+          background-color: @clr-link;
+          background-image: @clr-primary-grad;
+          border-radius: 0.6rem;
+          z-index: 0;
+          transition: all @a7n-trans-slow;
+          &:before {
+            // .pseudo;
+            // .spanSize;
+            // background-color: @clr-headerBg;
+            // border-radius: 0.5rem;
+            // z-index: -1;
+            // transition: all @a7n-dur-slow;
+          }
+          svg.header-item {
+            .dbl;
+            height: @navItem-height;
+            width: @navItem-width;
+            border-radius: 0.4em;
+            text {
+              text-anchor: middle;
+              text-transform: uppercase;
+              letter-spacing: -0.05em;
+            }
+            .mask-subtract {
+              fill: white;
+            }
+            .mask-add {
+              fill: black;
+            }
+            .header-item-area {
+              fill: @clr-headerBg;
+            }
+          }
+          &.active, &:hover {
+            padding: 0 5px;
+            margin: 0 -5px;
+          }
         }
       }
     }
   }
 }
 
+
 #site-header-logo {
-  width: @sidebarWidth;
-  height: 30px;
+  width: 0;
+  height: 0;
+  opacity: 0;
   path, polygon {
     fill: @clr-primary;
   }

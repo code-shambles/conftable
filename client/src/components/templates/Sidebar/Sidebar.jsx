@@ -6,9 +6,11 @@ import './Sidebar.less';
 const renderItems = navItems => {
   const items = [];
 
-  navItems.forEach(navItem => {
-    items.push(<li key={navItem.path}><NavLink to={navItem.path} exact={navItem.exact} className={navItem.className}>{navItem.text}</NavLink></li>);
-  });
+  if (navItems) {
+    navItems.forEach(navItem => {
+      items.push(<li key={navItem.path}><NavLink to={navItem.path} exact={navItem.exact} className={navItem.className}>{navItem.text}</NavLink></li>);
+    });
+  }
 
   return items;
 }

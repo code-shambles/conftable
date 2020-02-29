@@ -1,12 +1,19 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 
 import { Sidebar } from '../../';
 
 import './SidebarConference.less';
 
-const SidebarConference = ({ conf }) => {
-  const navItems = [{
+const getSelectedConf = (confs) => {
+  return confs && confs.selectedId ? confs.allById[confs.selectedId] : null;
+};
+
+const SidebarConference = ({ confs }) => {
+
+  const conf = getSelectedConf(confs);
+  const navItems = conf ? [{
     className: 'conf-home-link',
     path: `/conferences/${conf.id}`,
     exact: true,
@@ -20,11 +27,17 @@ const SidebarConference = ({ conf }) => {
   }, {
     path: `/conferences/${conf.id}/talkcards`,
     text: 'Print talk cards'
-  }];
+  }] : null;
 
   return (
     <Sidebar navItems={navItems} />
   );
 };
 
-export default SidebarConference;
+function mapStateToProps(state, ownProps) {
+  return {
+    confs: { ...state.confs, selectedId: ownProps.computedMatch.params.confId }
+  };
+}
+   
+export default connect(mapStateToProps)(withRouter(SidebarConference));

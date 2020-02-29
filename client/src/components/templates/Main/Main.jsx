@@ -5,12 +5,10 @@ import { ConferencesPage, ConfPage, HomePage } from '../../';
 
 import './Main.less';
 
-const Main = props => {
+const Main = () => {
   return (
     <Switch>
-      <Route exact path="/">
-        <HomePage onSubmissionsChange={props.onSubmissionsChange} />
-      </Route>
+      <Route exact path="/" component={HomePage} />
       <Route path="/conferences">
         <Route exact path="/conferences" component={ConferencesPage} />
         <Route path="/conferences/:confId" component={ConfPage} />

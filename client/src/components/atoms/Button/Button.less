@@ -2,6 +2,9 @@
 
 .btn {
   @paddingX: 1.75rem;
+  @trans-dur: @a7n-dur-slow;
+  @trans-func: @a7n-func;
+  @trans: @a7n-trans-slow;
   .bg-hidden() {
     .pseudo;
     top: 50%;
@@ -14,7 +17,7 @@
   .input;
   .textShadow;
   border: none;
-  transition: box-shadow @a7n-trans;
+  transition: box-shadow @trans;
   cursor: pointer;
 
   .m0;
@@ -22,7 +25,7 @@
   padding-left: @paddingX;
   padding-right: @paddingX;
   background: @clr-primary;
-  transition: inherit, color 0.4s ease;
+  transition: inherit, color @trans;
   .btn-content {
     .prel;
     z-index: 1;
@@ -32,11 +35,11 @@
   }
   &:before {
     background-color: rgba(255,255,255,0.15);
-    transition: all 0.4s ease;
+    transition: all @trans;
   }
   &:after {
     background-color: @clr-primary;
-    transition: all 0.3s 0.2s ease;
+    transition: all @trans-dur*0.75 @trans-func;
   }
   &[disabled] {
     cursor: not-allowed;
@@ -56,6 +59,7 @@
         right: 0.25em;
         bottom: 0.25em;
         left: 0.25em;
+        transition: all @trans-dur*0.75 @trans-dur*0.5 @trans-func;
       }
     }
     &:active {

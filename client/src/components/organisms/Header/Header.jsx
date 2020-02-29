@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as confActions from '../../../redux/actions';
-import { HashRouter as Router, NavLink } from "react-router-dom";
+import { withRouter, Link, NavLink } from "react-router-dom";
 
 import './Header.less';
 
 const logo = (
   <svg id="site-header-logo" viewBox="0 0 339 88">
+  <defs>
+    <clipPath id="header-logo-clip" clipPathUnits="objectBoundingBox" transform="scale(0.002933 0.0116279)">
     <path d="M123.63,6.24h-18.78c-1.96,0-3.7,0.75-5.24,2.25c-1.54,1.5-2.31,3.27-2.31,5.29v58.25c0,2.1,0.77,3.88,2.31,5.34
       c1.54,1.47,3.28,2.2,5.24,2.2h18.78c2.16,0,3.96-0.73,5.4-2.2c1.43-1.47,2.15-3.25,2.15-5.34V56.11l-9.74,2.3v7.65
       c0,1.12-0.33,2.03-1,2.72c-0.66,0.7-1.56,1.05-2.67,1.05h-6.94c-0.98,0-1.85-0.35-2.62-1.05c-0.77-0.7-1.15-1.61-1.15-2.72V19.75
@@ -38,17 +39,34 @@ const logo = (
     <path d="M67.85,53.77c-3.88,16.23-12.9,23.97-12.9,23.97l-12.54-7.7c0,0,7.39-7.9,10.15-17.51c-19.44-0.94-32.83,0.76-32.83,0.76
       c6.07-4.03,12.7-39.03,9-44.59c0,0,21.62,14.65,56.09,22.72V20.42c0-10.61-8.6-19.21-19.21-19.21H19.21C8.6,1.21,0,9.81,0,20.42
       v46.39c0,10.61,8.6,19.21,19.21,19.21h46.39c10.61,0,19.21-8.6,19.21-19.21V56.38C78.97,55.24,73.28,54.39,67.85,53.77z"/>
+      </clipPath>
+      </defs>
+      <rect x="0" y="0" width="100%" height="100%" clipPath="url(#header-logo-clip)"/>
   </svg>
 );
 
-const MenuLink = props => {
-  return <NavLink {...props} exact={true} activeClassName="active"/>
+const MenuLink = ({name, text}) => {
+  return (
+    <li>
+      <NavLink to={`/${name}`} activeClassName="active">
+        <svg className="header-item">
+          <defs>
+            <mask id={`header-item-mask-${name}`} x="0" y="0" width="100%" height="100%">
+              <rect className="mask-subtract" x="0" y="0" width="100%" height="100%" />
+              <text className="mask-add" x="50%" y="50%" dy="0.4em">{text}</text>
+            </mask>
+          </defs>
+          <rect className="header-item-area" x="0" y="0" width="100%" height="100%" mask={`url(#header-item-mask-${name})`} />
+        </svg>
+      </NavLink>
+    </li>
+  );
 }
 
 const renderItems = confs => {
   const items = [
-    <li key="conferences"><MenuLink to="/conferences">Conferences ({confs.ids.length})</MenuLink></li>,
-    <li key="speakers"><MenuLink to="/speakers">Speakers</MenuLink></li>
+    <MenuLink key="conferences" name="conferences" text={`Conferences (${confs.ids.length})`} />,
+    <MenuLink key="speakers" name="speakers" text={`Speakers (tbd)`} />,
   ];
 
   return items;
@@ -57,12 +75,11 @@ const renderItems = confs => {
 const Header = props => {
   return (
     <header id="site-header">
-      {logo}
+     {logo}
+      <Link to="/"id="header-logo"><div></div></Link>
       <nav id="header-nav">
         <ul>
-          <Router>
             {renderItems(props.confs)}
-          </Router>
         </ul>
       </nav>
     </header>
@@ -70,10 +87,10 @@ const Header = props => {
 };
 
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     confs: state.confs
   };
 } 
    
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));
