@@ -18,9 +18,9 @@ const renderItems = navItems => {
 const Sidebar = ({ navItems, children }) => {
   return(
     <nav className="sidebar">
-      {children}
       <ul>
         {renderItems(navItems)}
+        {children}
       </ul>
     </nav>
   )

@@ -34,10 +34,8 @@ const SidebarConference = ({ confs }) => {
   );
 };
 
-function mapStateToProps(state, ownProps) {
-  return {
-    confs: { ...state.confs, selectedId: ownProps.computedMatch.params.confId }
-  };
-}
+const mapStateToProps = (state, ownProps) => ({
+  confs: { ...state.confs, selectedId: ownProps.match.params.confId }
+});
    
-export default connect(mapStateToProps)(withRouter(SidebarConference));
+export default withRouter(connect(mapStateToProps)(SidebarConference));

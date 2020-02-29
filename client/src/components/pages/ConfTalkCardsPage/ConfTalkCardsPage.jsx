@@ -1,41 +1,57 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import { Button, SidebarConference } from '../../';
+import { Button, ConfTpl } from '../../';
 
 import './ConfTalkCardsPage.less';
 
-const renderCards = submissions => {
-  let cards = [];
-
-  if (submissions) {
-    let i = 0;
-    submissions.filter(sub => sub.state === 'accepted').forEach(sub => {
-      cards.push(
-        <li key={i++}>
-          <h2>{sub.title}</h2>
-          <h3>{sub.name}</h3>
-        </li>
-      );
-    });
-  }
-
-  return cards;
+const pageConfig = {
+  key: 'conf-talkcards',
+  heading: 'Print Talk Cards',
 };
 
-const ConfTalkCardsPage = props => {
+const getSelectedConf = confs => {
+  return confs && confs.selectedId ? confs.allById[confs.selectedId] : null;
+};
+
+const renderCards = conf => {
+  let cards = [];
+  let i = 0;
+
+  conf.submissions.filter(sub => sub.state === 'accepted').forEach(sub => {
+    cards.push(
+      <li key={i++}>
+        <h2>{sub.title}</h2>
+        <h3>{sub.name}</h3>
+      </li>
+    );
+  });
+
   return [
-    <SidebarConference key="sidebar" />,
-    (
-      <main key="talkcards" id="talk-cards">
-        <section>
-          <h1>Print Talk Cards</h1>
-          <ul>{renderCards(props.submissions)}</ul>
-          <hr />
-          <Button onClick={window.print}>Print</Button>
-        </section>
-      </main>
-    )
+    <ul>{cards}</ul>,
+    <hr />,
+    <Button onClick={window.print}>Print</Button>
   ];
 };
 
-export default ConfTalkCardsPage;
+const renderEmpty = () => (
+  <p>No submissions found</p>
+);
+
+const ConfTalkCardsPage = ({confs}) => {
+  const conf = getSelectedConf(confs);
+
+  const hasSubmissions = conf && conf.submissions && conf.submissions.length;
+
+  return (
+    <ConfTpl conf={conf} pageConfig={pageConfig}>
+      {hasSubmissions ? renderCards(conf) : renderEmpty()}
+    </ConfTpl>
+  );
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  confs: { ...state.confs, selectedId: ownProps.match.params.confId }
+});
+
+export default connect(mapStateToProps)(ConfTalkCardsPage);

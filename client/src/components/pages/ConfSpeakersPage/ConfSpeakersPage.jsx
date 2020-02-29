@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../redux/actions';
 
 import { ConfTpl } from '../../';
 
@@ -25,16 +24,8 @@ const ConfSpeakersPage = ({ confs }) => {
   );
 };
 
-function mapStateToProps(state, ownProps) {
-  return {
-    confs: { ...state.confs, selectedId: ownProps.match.params.confId}
-  };
-} 
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onSelectConf: selectedId => dispatch(actions.selectConf(selectedId)),
-  };
-}
+const mapStateToProps = (state, ownProps) => ({
+  confs: { ...state.confs, selectedId: ownProps.match.params.confId }
+});
    
-export default connect(mapStateToProps, mapDispatchToProps)(ConfSpeakersPage);
+export default connect(mapStateToProps)(ConfSpeakersPage);

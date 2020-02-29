@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../redux/actions';
 import { Link } from "react-router-dom";
 
 import { ConfTpl } from '../../';
@@ -25,9 +24,7 @@ const renderMenu = conf => {
         </Link>
       </li>
     </ul>
-  ) : (
-    <p>Please <Link to={`/conferences`}>select a conference</Link> first.</p>
-  );
+  ) : null;
 };
 
 const ConfIndexPage = ({ confs }) => {
@@ -36,7 +33,7 @@ const ConfIndexPage = ({ confs }) => {
 
   const pageConfig = {
     key: 'conf-home',
-    heading: conf ? conf.name : '-',
+    heading: conf ? conf.name : '',
   };
 
   return (
@@ -46,16 +43,8 @@ const ConfIndexPage = ({ confs }) => {
   );
 };
 
-function mapStateToProps(state, ownProps) {
-  return {
-    confs: { ...state.confs, selectedId: ownProps.match.params.confId }
-  };
-} 
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onSelectConf: selectedId => dispatch(actions.selectConf(selectedId)),
-  };
-}
+const mapStateToProps = (state, ownProps) => ({
+  confs: { ...state.confs, selectedId: ownProps.match.params.confId }
+});
    
-export default connect(mapStateToProps, mapDispatchToProps)(ConfIndexPage);
+export default connect(mapStateToProps)(ConfIndexPage);

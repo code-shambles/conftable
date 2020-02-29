@@ -39,17 +39,12 @@ const ConferencesPage = props => {
   );
 };
 
-function mapStateToProps(state, ownProps) {
-  return {
-    confs: state.confs
-  };
-} 
+const mapStateToProps = (state) => ({
+  confs: state.confs
+});
 
-const mapDispatchToProps = dispatch => {
-
-  return {
-    onSelectConf: selectedId => dispatch(actions.selectConf(selectedId)),
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  onSelectConf: selectedId => dispatch(actions.selectConf(selectedId)),
+});
    
 export default connect(mapStateToProps, mapDispatchToProps)(ConferencesPage);
