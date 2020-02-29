@@ -6,6 +6,7 @@ import { ConfIndexPage, ConfSubmissionsPage, ConfSpeakersPage, ConfTalkCardsPage
 import './ConfPage.less';
 
 const ConfPage = () => [
+  <SidebarConference key="sidebar" />, 
   <Switch key="switch">
     <Route path="/conferences/:confId">
       <Route exact path="/conferences/:confId" component={ConfIndexPage} />

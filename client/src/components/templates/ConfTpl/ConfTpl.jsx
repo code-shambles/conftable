@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
-import { SidebarConference } from '../../';
-
 import './ConfTpl.less';
 
 const renderContent = (conf, children) => {
@@ -11,16 +9,13 @@ const renderContent = (conf, children) => {
   );
 }
 
-const ConfTpl = ({ conf, pageConfig, children }) => [
-  <SidebarConference key="sidebar" />, 
-  (
-    <main key="main" id="conf-page" className={`${pageConfig.key}-page`}>
-      <header>
-        <h1>{conf ? pageConfig.heading : `${pageConfig.heading} No Conference Selected`}</h1>
-      </header>
-      {renderContent(conf, children)}
-    </main>
-  )
-];
+const ConfTpl = ({ conf, pageConfig, children }) => (
+  <main key="main" id="conf-page" className={`${pageConfig.key}-page`}>
+    <header>
+      <h1>{conf ? pageConfig.heading : `${pageConfig.heading} No Conference Selected`}</h1>
+    </header>
+    {renderContent(conf, children)}
+  </main>
+);
    
 export default ConfTpl;
