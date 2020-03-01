@@ -1,19 +1,16 @@
-var mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-var ConfSchema = new Schema({
+const ConfSchema = new Schema({
   name: { type: String, required: true },
   cfp: {
-    from: { type: Date },
-    to: { type: Date },
+    start: { type: Date },
+    end: { type: Date },
   },
   origin_link: { type: String },
 });
 
-ConfSchema.virtual("url").get(function() {
-  return `conference/${this._id}`;
-});
+ConfSchema.virtual('url').get(() => `conference/${this._id}`);
 
-//Export model
-module.exports = mongoose.model("Conf", ConfSchema);
+module.exports = mongoose.model('Conf', ConfSchema);

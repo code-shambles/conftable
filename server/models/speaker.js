@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-var SpeakerSchema = new Schema({
+const SpeakerSchema = new Schema({
   name: { type: String },
   email: { type: String },
   location: { type: String },
@@ -23,8 +23,6 @@ var SpeakerSchema = new Schema({
   },
 });
 
-SubmissionSchema.virtual("url").get(function() {
-  return `speaker/${this._id}`;
-});
+SpeakerSchema.virtual('url').get(() => `speaker/${this._id}`);
 
-module.exports = mongoose.model("Speaker", SpeakerSchema);
+module.exports = mongoose.model('Speaker', SpeakerSchema);

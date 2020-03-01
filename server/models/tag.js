@@ -1,13 +1,11 @@
-var mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-var TagSchema = new Schema({
+const TagSchema = new Schema({
   name: { type: String, required: true },
 });
 
-TagSchema.virtual("url").get(function() {
-  return `tag/${this._id}`;
-});
+TagSchema.virtual('url').get(() => `tag/${this._id}`);
 
-module.exports = mongoose.model("Tag", TagSchema);
+module.exports = mongoose.model('Tag', TagSchema);

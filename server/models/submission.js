@@ -1,16 +1,16 @@
-var mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-var SubmissionSchema = new Schema({
+const SubmissionSchema = new Schema({
   rating: { type: Schema.Types.Float },
   state: {
     type: String,
-    enum: ["submitted", "accepted", "rejected", "waitlist"],
-    default: "submitted",
+    enum: ['submitted', 'accepted', 'rejected', 'waitlist'],
+    default: 'submitted',
   },
-  speakers: [{ type: Schema.Types.ObjectId, ref: "Author" }],
-  tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
+  speakers: [{ type: Schema.Types.ObjectId, ref: 'Author' }],
+  tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
   internal_notes: { type: String },
   origin_link: { type: String },
   updated_at: { type: Date },
@@ -25,17 +25,15 @@ var SubmissionSchema = new Schema({
     rating: { type: Schema.Types.Float },
     state: {
       type: String,
-      enum: ["submitted", "accepted", "rejected", "waitlist"],
-      default: "submitted",
+      enum: ['submitted', 'accepted', 'rejected', 'waitlist'],
+      default: 'submitted',
     },
-    speakers: [{ type: Schema.Types.ObjectId, ref: "Author" }],
-    tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
+    speakers: [{ type: Schema.Types.ObjectId, ref: 'Author' }],
+    tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
     created_at: { type: Date },
   },
 });
 
-SubmissionSchema.virtual("url").get(function() {
-  return `submission/${this._id}`;
-});
+SubmissionSchema.virtual('url').get(() => `speaker/${this._id}`);
 
-module.exports = mongoose.model("Submission", SubmissionSchema);
+module.exports = mongoose.model('Submission', SubmissionSchema);
